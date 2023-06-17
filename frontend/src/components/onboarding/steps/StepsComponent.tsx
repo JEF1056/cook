@@ -11,10 +11,10 @@ export function StepsComponent(props: StepsComponentProps) {
         Scan Fridge
       </Steps.Step>
       <Steps.Step color={props.currentStep >= 1 ? "primary" : undefined}>
-        Verify Items
+        Review Ingredients
       </Steps.Step>
       <Steps.Step color={props.currentStep >= 2 ? "primary" : undefined}>
-        Purchase
+        Browse Recipies
       </Steps.Step>
     </Steps>
   );
