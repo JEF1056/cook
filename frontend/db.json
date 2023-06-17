@@ -2,11 +2,37 @@
     "users": [
         {
             "id": 1,
-            "name": "Jess",
-            "ingredients": {
-                "tomato" : 1,
-                "carrot" : 2
-            }
+            "name": "Jess"
+        }
+    ],
+
+    "ingredients": [
+        {
+            "id": 1,
+            "tomato": 1,
+            "carrot": 2
+
+        }
+    ],
+
+    "recipes": [
+        {   
+            "id": 1,
+            "title": "Veggie Medley 1",
+            "description": "Vegetables are good for you!",
+            "source": "NY Times"
+        },
+        {   
+            "id": 2,
+            "title": "Veggie Medley 2",
+            "description": "Vegetables are good for you!",
+            "source": "NY Times 2"
+        },
+        {   
+            "id": 3,
+            "title": "Veggie Medley 3",
+            "description": "Vegetables are good for you!",
+            "source": "NY Times 3"
         }
     ]
 }
