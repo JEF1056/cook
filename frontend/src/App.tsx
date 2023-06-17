@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 import "./App.css";
 import { HomePage } from "./components/HomePage";
+import OnboardingScanPage from "./components/Onboarding/OnboardingScanPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -11,8 +12,8 @@ function App() {
       element: <HomePage />,
     },
     {
-      path: "/yeet",
-      element: <></>,
+      path: "/onboard",
+      element: <OnboardingScanPage />,
     },
   ]);
 
