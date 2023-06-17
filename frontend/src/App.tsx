@@ -2,8 +2,8 @@ import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 import "./App.css";
-import { HomePage } from "./components/Home/HomePage";
-import OnboardingScanPage from "./components/Onboarding/OnboardingScanPage";
+import { HomePage } from "./components/HomePage";
+import OnboardingScanPage from "./components/onboarding/OnboardingPage";
 
 function App() {
   const router = createBrowserRouter([
