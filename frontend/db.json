@@ -1,0 +1,12 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "name": "Jess",
+            "ingredients": {
+                "tomato" : 1,
+                "carrot" : 2
+            }
+        }
+    ]
+}
