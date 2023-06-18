@@ -1,5 +1,6 @@
 import { Card } from "react-daisyui";
 import { useEffect, useState } from "react";
+import { useWindowSize } from "../services/hooks";
 
 interface RecipesComponentProps {
   id?: Number;
@@ -11,9 +12,10 @@ interface RecipesComponentProps {
 
 function RecipesComponent(props: RecipesComponentProps) {
   const [recipeImage, setRecipeImage] = useState<string | undefined>(undefined);
+  const size = useWindowSize();
 
   const prompt =
-    "Delicous, appetizing " + props.title.toLowerCase() + " ready to be served";
+    "Delicious, appetizing " + props.title.toLowerCase() + " ready to be served";
 
   useEffect(() => {
     let timer1 = setTimeout(() => {
@@ -37,12 +39,12 @@ function RecipesComponent(props: RecipesComponentProps) {
   }, [props.title]);
 
   return (
-    <div className="m-5">
+    <div className={props.rowMode === true ? "m-5" : ""}>
       <Card
         className={
-          props.rowMode === true
-            ? "w-full h-60"
-            : "w-full lg:w-96 m-5 lg:mx-0 h-96"
+          props.rowMode === true 
+            ? (size.width > 512 ? "w-full h-60": "w-full h-96")
+            : "w-full lg:w-96 m-5 lg:mx-0 h-64"
         }
         side={props.rowMode ? "sm" : undefined}
       >
@@ -50,7 +52,7 @@ function RecipesComponent(props: RecipesComponentProps) {
           <Card.Image
             src={"data:image/png;base64," + recipeImage}
             alt={prompt}
-            className="z-0 w-64"
+            className={size.width > 512 ? (props.rowMode === true ? "z-0 w-64" : "z-0") : "z-0"}
           />
         ) : (
           <Card.Image
@@ -59,8 +61,8 @@ function RecipesComponent(props: RecipesComponentProps) {
             className="animate-pulse z-0"
           />
         )}
-        <Card.Body>
-          <Card.Title tag="h2">{props.title}</Card.Title>
+        <Card.Body className="bg-base-200">
+          <Card.Title className="text-md ">{props.title}</Card.Title>
           {props.description !== undefined && <p>{props.description}</p>}
         </Card.Body>
       </Card>
