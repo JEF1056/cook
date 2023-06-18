@@ -37,30 +37,34 @@ function RecipesComponent(props: RecipesComponentProps) {
   }, [props.title]);
 
   return (
-    <Card
-      className={
-        props.rowMode ? "w-full lg:w-96 mx-5 lg:mx-0 h-96" : "w-full mx-5"
-      }
-      side={props.rowMode ? "xs" : undefined}
-    >
-      {recipeImage !== undefined ? (
-        <Card.Image
-          src={"data:image/png;base64," + recipeImage}
-          alt={prompt}
-          className="z-0"
-        />
-      ) : (
-        <Card.Image
-          src="/placeholder.png"
-          alt={prompt}
-          className="animate-pulse z-0"
-        />
-      )}
-      <Card.Body>
-        <Card.Title tag="h2">{props.title}</Card.Title>
-        {props.description !== undefined && <p>{props.description}</p>}
-      </Card.Body>
-    </Card>
+    <div className="m-5">
+      <Card
+        className={
+          props.rowMode === true
+            ? "w-full h-60"
+            : "w-full lg:w-96 m-5 lg:mx-0 h-96"
+        }
+        side={props.rowMode ? "sm" : undefined}
+      >
+        {recipeImage !== undefined ? (
+          <Card.Image
+            src={"data:image/png;base64," + recipeImage}
+            alt={prompt}
+            className="z-0 w-64"
+          />
+        ) : (
+          <Card.Image
+            src="/placeholder.png"
+            alt={prompt}
+            className="animate-pulse z-0"
+          />
+        )}
+        <Card.Body>
+          <Card.Title tag="h2">{props.title}</Card.Title>
+          {props.description !== undefined && <p>{props.description}</p>}
+        </Card.Body>
+      </Card>
+    </div>
   );
 }
 
