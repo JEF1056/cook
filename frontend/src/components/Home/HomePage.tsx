@@ -2,15 +2,21 @@ import { useState, useEffect } from "react";
 import foodService from "../../services/food";
 import RecipesComponent from "../RecipesComponent";
 import mascot from "../../images/mascot.png";
-import welcomeBubble from "frontend/src/images/Welcome Circle.jpg";
+import welcomeBubble from "../../images/Welcome Circle.jpg";
 
 const username: string = "Zack";
 
 const WelcomeBanner = ({ name }: { name: string }) => {
   return (
     <div className="flex w-full items-center justify-center py-8">
-      <div className="chat chat-end">
-        <div className="chat-header font-bold text-3xl p-8">
+      <img className="absolute  z-0" src={welcomeBubble} 
+      style={{height:"25%", 
+      marginRight: "13 rem",
+      marginBottom:"7 rem"}}></img>
+      <div className="chat chat-end z-10">
+        <div className="chat-header font-bold text-3xl p-8"
+        style={{marginLeft:"-5 rem",}}
+        >
           Welcome back, chef
         </div>
         <div className="chat-bubble text-3xl w-64 ">Let {name} cook!</div>
