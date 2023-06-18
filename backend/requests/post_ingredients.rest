@@ -1,0 +1,17 @@
+POST http://127.0.0.1:5000/ingredients HTTP/1.1
+content-type: application/json
+
+[
+  {
+    "amount": 1,
+    "ingredient": "cabbage"
+  },
+  {
+    "amount": 2,
+    "ingredient": "lemon"
+  },
+  {
+    "amount": 2,
+    "ingredient": "lime"
+  }
+]

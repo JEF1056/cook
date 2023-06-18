@@ -1,0 +1,13 @@
+POST http://127.0.0.1:5000/recipes HTTP/1.1
+content-type: application/json
+
+[
+  {
+    "directions": "Wash your veggies\nChop your veggies\nMix",
+    "ingredients": "1 tomato\n1 carrot\n1 cabbage",
+    "link": "www.google.com",
+    "ner": "tomato\ncarrot\ncabbage",
+    "source": "Gathered",
+    "title": "vegetable medley 2!!"
+  }
+]

@@ -18,7 +18,7 @@ def recipe(title):
     if len(res) >= 1:  # there should only be 1 result
         return res[0]
     else:
-        return "error"
+        return
 
 
 @app.route("/recipes")
@@ -30,7 +30,9 @@ def recipes():
 @app.post("/recipes")
 def add_recipes():
     recipes_table = db.get_table("recipes")
-    return list(recipes_table)
+    new_recipes = request.json
+    recipes_table.insert_many(new_recipes)
+    return new_recipes
 
 
 def insert_recipe(table):
@@ -38,6 +40,13 @@ def insert_recipe(table):
     table.insert(request.form)
     # when adding data, make everything lower case later
 
+
+@app.post("/recipes/delete/<title>")
+def delete_recipe(title):
+    if (db.get_table("recipes").delete(title=title)):
+        return f'{title} has been deleted.'
+    else:
+        return f'{title} has already been deleted/or did not exist.'
 
 # table.insert(dict(title="vegetable medley",
 #                   ingredients=("\n").join(
@@ -61,6 +70,22 @@ def ingredient(ingredient):
         return res[0]
     else:
         return "error"
+
+
+@app.post("/ingredients")
+def add_ingredients():
+    ingredients_table = db.get_table("ingredients")
+    new_ingredients = request.json
+    ingredients_table.upsert_many(new_ingredients, ['ingredient'])
+    return new_ingredients
+
+
+@app.post("/ingredients/delete/<ingredient>")
+def delete_ingredient(ingredient):
+    if (db.get_table("ingredients").delete(ingredient=ingredient)):
+        return f'{ingredient} has been deleted.'
+    else:
+        return f'{ingredient} has already been deleted/or did not exist.'
 
 
 app.run(port=5000, debug=True)
