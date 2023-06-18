@@ -4,6 +4,7 @@ import foodService from "../../services/food";
 import lizardImg from "../../images/lizard.jpeg";
 import RecipesComponent from "../RecipesComponent";
 import mascot from "../../images/mascot.png"
+import welcomeBubble from "frontend/src/images/Welcome Circle.jpg"
 
 const username: string = "Zack";
 
@@ -77,7 +78,7 @@ export function HomePage() {
   const [recipes, setRecipes] = useState(new Array());
 
   useEffect(() => {
-    foodService.getAllRecipes().then((returnedRecipes: Array<Object>) => {
+    foodService.getAllFavRecipes().then((returnedRecipes: Array<Object>) => {
       setRecipes(returnedRecipes);
     });
   }, []);

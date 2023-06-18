@@ -6,9 +6,9 @@ const getAllIngredients = () => {
   return request.then((response) => response.data);
 };
 
-const getAllRecipes = () => {
+const getAllFavRecipes = () => {
     console.log('hi')
-    const request = axios.get(`${baseUrl}/recipes`)
+    const request = axios.get(`${baseUrl}/fav-recipes`)
     return request.then(response => response.data)
 }
 
@@ -16,4 +16,4 @@ const addIngredient = (ingredient: string) => {
   // const request = axios.post(baseUrl, )
 };
 
-export default { getAllIngredients, addIngredient, getAllRecipes };
+export default { getAllIngredients, addIngredient, getAllFavRecipes };
