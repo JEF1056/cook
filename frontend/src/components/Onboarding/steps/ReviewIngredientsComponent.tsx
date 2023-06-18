@@ -21,13 +21,18 @@ function ReviewIngredientsComponent() {
     let timer1 = setTimeout(() => {
       setImageIsProcessing(false);
       setTempFood([
-        "Bok Choy",
-        "Chicken Breast",
-        "Potato",
-        "Soy Sauce",
-        "Sesame Oil",
-        "Salt",
-        "Pepper",
+        "breads",
+        "apples",
+        "peaches",
+        "bananas",
+        "carrots",
+        "potatoes",
+        "onions",
+        "peppers",
+        "pork",
+        "beef",
+        "chicken",
+        "eggs",
       ]);
     }, 5 * 1000);
     return () => {

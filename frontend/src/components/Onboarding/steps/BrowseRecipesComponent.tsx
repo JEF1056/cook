@@ -3,7 +3,6 @@ import { Button } from "react-daisyui";
 import { useRecoilState } from "recoil";
 import { onboardingStepState } from "../../../services/atoms";
 import { useState, useEffect } from "react";
-import IngredientsComponent from "../../IngredientsComponent";
 import RecipesComponent from "../../RecipesComponent";
 
 function BrowseRecipesComponent() {
