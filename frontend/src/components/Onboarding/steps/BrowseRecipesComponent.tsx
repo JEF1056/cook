@@ -16,7 +16,7 @@ function BrowseRecipesComponent() {
       fetch(
         `https://${
           window.location.hostname.split(":")[0]
-        }:5000/recipes?increase=10`
+        }:5000/recipes?increase=8`
       ).then((response) => {
         response.json().then((json) => {
           setRecipies(json);

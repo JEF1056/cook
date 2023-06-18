@@ -73,7 +73,7 @@ function RecipesComponent(props: RecipesComponentProps) {
           props.rowMode === true
             ? size.width > 512
               ? "w-full h-60"
-              : "w-full h-96"
+              : "w-full h-128"
             : "w-full lg:w-96 m-5 lg:mx-0 h-64"
         }
         side={props.rowMode ? "sm" : undefined}
