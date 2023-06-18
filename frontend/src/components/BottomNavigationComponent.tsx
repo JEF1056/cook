@@ -35,6 +35,7 @@ function BottomNavigationComponent() {
         <button
           onClick={() => (window.location.href = data.path)}
           className={pathname === data.path ? "active" : ""}
+          disabled={data.avatar ? true : false}
         >
           {data.icon && <FontAwesomeIcon icon={data.icon} />}
           {data.avatar && (

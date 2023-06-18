@@ -15,7 +15,9 @@ function RecipesComponent(props: RecipesComponentProps) {
   const size = useWindowSize();
 
   const prompt =
-    "Delicious, appetizing " + props.title.toLowerCase() + " ready to be served";
+    "Delicous, appetizing, and beautiful " +
+    props.title.toLowerCase() +
+    " ready to be served";
 
   useEffect(() => {
     let timer1 = setTimeout(() => {
@@ -42,8 +44,10 @@ function RecipesComponent(props: RecipesComponentProps) {
     <div className={props.rowMode === true ? "m-5" : ""}>
       <Card
         className={
-          props.rowMode === true 
-            ? (size.width > 512 ? "w-full h-60": "w-full h-96")
+          props.rowMode === true
+            ? size.width > 512
+              ? "w-full h-60"
+              : "w-full h-96"
             : "w-full lg:w-96 m-5 lg:mx-0 h-64"
         }
         side={props.rowMode ? "sm" : undefined}
@@ -52,7 +56,13 @@ function RecipesComponent(props: RecipesComponentProps) {
           <Card.Image
             src={"data:image/png;base64," + recipeImage}
             alt={prompt}
-            className={size.width > 512 ? (props.rowMode === true ? "z-0 w-64" : "z-0") : "z-0"}
+            className={
+              size.width > 512
+                ? props.rowMode === true
+                  ? "z-0 w-64"
+                  : "z-0"
+                : "z-0"
+            }
           />
         ) : (
           <Card.Image
