@@ -43,7 +43,7 @@ function ScanFridgeComponent() {
         videoConstraints={videoConstraints}
       />
 
-      <div className="flex flex-row absolute bottom-10 justify-center w-full">
+      <div className="flex flex-row absolute bottom-24 justify-center w-full">
         <Button
           onClick={() => {
             capture();
