@@ -31,6 +31,10 @@ function App() {
       path: "/search",
       element: addBottomNavigation(<SearchPage />),
     },
+    {
+      path: "/details",
+      element: addBottomNavigation(<RecipeDetails />),
+    },
   ]);
 
   return (
