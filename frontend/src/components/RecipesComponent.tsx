@@ -1,6 +1,8 @@
 import { Card } from "react-daisyui";
 import { useEffect, useState } from "react";
 import { useWindowSize } from "../services/hooks";
+import { useSetRecoilState } from "recoil"
+import { recipeDetailState } from "../services/atoms";
 
 interface RecipesComponentProps {
   id?: Number;
@@ -14,6 +16,8 @@ function RecipesComponent(props: RecipesComponentProps) {
   const [recipeImage, setRecipeImage] = useState<string | undefined>(undefined);
   const [desc, setDesc] = useState(props.description);
   const size = useWindowSize();
+  const setRecipeDetail = useSetRecoilState(recipeDetailState)
+  //setRecipeDetail(obj)
 
   const imagePrompt =
     "Delicous, appetizing, and beautiful " +
@@ -73,7 +77,7 @@ function RecipesComponent(props: RecipesComponentProps) {
           props.rowMode === true
             ? size.width > 512
               ? "w-full h-60"
-              : "w-full h-96"
+              : "w-full h-128"
             : "w-full lg:w-96 m-5 lg:mx-0 h-64"
         }
         side={props.rowMode ? "sm" : undefined}

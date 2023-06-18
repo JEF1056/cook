@@ -22,7 +22,7 @@ const paths = [
   },
   {
     path: "/profile",
-    avatar: "https://avatars.githubusercontent.com/u/20658825?v=4",
+    avatar: "/zackbrcookin.jpg",
   },
 ];
 
