@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 import "./App.css";
 import { HomePage } from "./components/Home/HomePage";
-import OnboardingScanPage from "./components/onboarding/OnboardingPage";
+import OnboardingScanPage from "./components/Onboarding/OnboardingPage";
 import BottomNavigationComponent from "./components/BottomNavigationComponent";
 import SearchPage from "./components/search/SearchPage";
 

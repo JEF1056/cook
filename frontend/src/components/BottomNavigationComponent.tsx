@@ -30,7 +30,7 @@ function BottomNavigationComponent() {
   const { pathname } = useLocation();
 
   return (
-    <BottomNavigation className="z-50 bg-neutral">
+    <BottomNavigation className="z-50 bg-base-300">
       {paths.map((data) => (
         <button
           onClick={() => (window.location.href = data.path)}

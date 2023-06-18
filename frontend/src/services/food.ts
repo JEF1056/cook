@@ -7,10 +7,10 @@ const getAllIngredients = () => {
 };
 
 const getAllRecipes = () => {
-  const request = axios.get(`${baseUrl}/recipes`);
-
-  return request.then((response) => response.data);
-};
+    console.log('hi')
+    const request = axios.get(`${baseUrl}/recipes`)
+    return request.then(response => response.data)
+}
 
 const addIngredient = (ingredient: string) => {
   // const request = axios.post(baseUrl, )

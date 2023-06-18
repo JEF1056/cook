@@ -9,8 +9,13 @@ module.exports = {
     extend: {
       spacing: {
         128: "32rem",
+
       },
     },
   },
   plugins: [require("daisyui")],
+
+  daisyui: {
+    themes: ["winter"],
+  },
 };

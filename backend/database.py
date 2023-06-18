@@ -1,7 +1,16 @@
 import dataset
 
 db = dataset.connect('sqlite:///cook.db')
-table = db['recipes']
+db['ingredients']
+db['recipes']
+
+
+# dic = {
+#     "amount": "2",
+#     "ingredient": "orange"
+# }
+
+# table.insert(dic)
 
 # table.insert(dict(title="veggies",
 #                   ingredients=("\n").join(
