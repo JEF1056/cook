@@ -6,14 +6,15 @@ const title:string = "Salmon & Spinach Pinwheels"
 const description:string = "Yummy delicious fish in wheels."
 const ingredients:string = "Fish\nCalamari\nSpinach\nPinwheels\nFish\nCalamari\nSpinach\nPinwheels\nFish\nCalamari\nSpinach\nPinwheels"
 const ingredientArray:Array<string> = ingredients.split("\n")
-const directions:string = "Left\nRight\nLeft\nRight\nRight\nLeft\nRight\nRight\nLeft\nRight"
+
+const directions:string = "Fish\nCalamari\nSpinach\nPinwheels\nFish\nCalamari\nSpinach\nPinwheels\nFish\nCalamari\nSpinach\nPinwheels"
 const directionArray:Array<string> = directions.split("\n")
 
-
-
+interface IngredientsInterface {
+    ingredientArray: Array<string>;
+}
 
 const Ingredients = () => {
-    // const recipeDetail = useRecoilValue(recipeDetailState)
     return (
         <div>
             <h2 className="text-sm font-medium " style={{color:"#598AB7"}}>Ingredients</h2>
@@ -32,6 +33,10 @@ const Ingredient = (props:IngredientInterface) => {
     return (
         <li>{props.ingredient}</li>
     )
+}
+
+interface DirectionsInterface {
+    directionArray: Array<string>;
 }
 
 
@@ -56,6 +61,16 @@ const Direction = (props:DirectionInterface) => {
 }
 
 const RecipeDetails = ()=> {
+    const recipeDetail = useRecoilValue(recipeDetailState)
+    
+    const directions:string = recipeDetail.directions
+    const directionArray:Array<string> = directions.split("\n")
+    const ingredients:string = recipeDetail.ingredients
+    const ingredientArray:Array<string> = ingredients.split("\n")
+    
+    console.log(directions)
+    console.log(ingredients)
+    
     return (
         <div className="m-4">
             <h1 className="text-2xl font-medium">{title}</h1>

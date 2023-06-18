@@ -46,7 +46,7 @@ function BrowseRecipesComponent() {
 
       <div className="w-full">
         {recipies.map((recipe) => (
-          <RecipesComponent title={recipe.title} rowMode />
+          <RecipesComponent directions={recipe.directions} ingredients={recipe.ingredients} title={recipe.title} rowMode />
         ))}
       </div>
     </div>

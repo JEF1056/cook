@@ -10,6 +10,8 @@ interface RecipesComponentProps {
   description?: String;
   source?: String;
   rowMode?: boolean;
+  directions: String;
+  ingredients: String;
 }
 
 function RecipesComponent(props: RecipesComponentProps) {
@@ -17,7 +19,7 @@ function RecipesComponent(props: RecipesComponentProps) {
   const [desc, setDesc] = useState(props.description);
   const size = useWindowSize();
   const setRecipeDetail = useSetRecoilState(recipeDetailState)
-  //setRecipeDetail(obj)
+  
 
   const imagePrompt =
     "Delicous, appetizing, and beautiful " +
@@ -48,7 +50,7 @@ function RecipesComponent(props: RecipesComponentProps) {
   }, [props.title]);
 
   useEffect(() => {
-    if (props.description === undefined && props.rowMode === true) {
+    if (props.description === undefined) {
       let timer1 = setTimeout(() => {
         fetch(
           `https://${
@@ -70,8 +72,17 @@ function RecipesComponent(props: RecipesComponentProps) {
     }
   }, [props.title]);
 
+  const props2:any = {
+    title: props.title,
+    description: desc,
+    image: recipeImage,
+    directions: props.directions,
+    ingredients: props.ingredients
+  }
+
   return (
-    <div className={props.rowMode === true ? "m-5" : ""}>
+    <div onClick={() => {setRecipeDetail(props2)
+                        window.location.href = "/details"}} className={props.rowMode === true ? "m-5" : "" }>
       <Card
         className={
           props.rowMode === true
@@ -103,7 +114,7 @@ function RecipesComponent(props: RecipesComponentProps) {
         )}
         <Card.Body className="bg-base-200">
           <Card.Title className="text-md ">{props.title}</Card.Title>
-          <p>{desc}</p>
+          {props.rowMode === true && <p>{desc}</p>}
         </Card.Body>
       </Card>
     </div>

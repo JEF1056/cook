@@ -33,13 +33,15 @@ interface RecipeInterface {
   title: String;
   description?: String;
   source?: String;
+  directions: String;
+  ingredients: String;
 }
 
 const Recipes = ({ recipes }: { recipes: Array<RecipeInterface> }) => {
   return (
     <div className="carousel carousel-center p-4 space-x-4 rounded-box mb-2 overflow-auto">
       {recipes.map((recipe) => (
-        <RecipesComponent title={recipe.title} />
+        <RecipesComponent title={recipe.title} directions={recipe.directions} ingredients={recipe.ingredients} />
       ))}
     </div>
   );
