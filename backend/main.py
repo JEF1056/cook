@@ -5,7 +5,6 @@ import dataset
 from flask_cors import CORS
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
-print(openai.api_key)
 
 app = Flask(__name__)
 CORS(app)
@@ -99,24 +98,24 @@ def get_image():
     if prompt is None:
         return "error: no prompt", 400
     cached_image = db["images"].find_one(prompt=request.args.get("prompt"))
-    print(cached_image)
     if cached_image is not None:
         b64 = cached_image["b64_json"]
-        # db["images"].delete_one(prompt=request.args.get("prompt"))
+        db["images"].delete(b64_json=b64)
+        print(len(b64))
         return b64
     else:
         response = openai.Image.create(
-            prompt=prompt, n=1, size="512x512", response_format="b64_json"
+            prompt=prompt, n=10, size="512x512", response_format="b64_json"
         )
 
-        # db["images"].insert_many(
-        #     [
-        #         {"prompt": prompt, "b64_json": resp["b64_json"]}
-        #         for resp in response["data"][1:]
-        #     ]
-        # )
+        db["images"].insert_many(
+            [
+                {"prompt": prompt, "b64_json": resp["b64_json"]}
+                for resp in response["data"][1:]
+            ]
+        )
 
         return response["data"][0]["b64_json"]
 
 
-app.run(port=5000, debug=False, threaded=False)
+app.run(port=5000, debug=True, threaded=False)

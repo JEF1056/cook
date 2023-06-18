@@ -33,33 +33,7 @@ function ReviewIngredientsComponent() {
     return () => {
       clearTimeout(timer1);
     };
-  }, [setTempFood]);
-
-  const getTabContent = () => {
-    switch (tabState) {
-      case 0:
-        return imageIsProcessing ? (
-          <p>Image is processing!</p>
-        ) : (
-          <>
-            <div className="flex flex-row items-center justify-center gap-5 flex-wrap">
-              {tempFood.map((food) => (
-                <IngredientsComponent name={food} />
-              ))}
-            </div>
-            <Button
-              className="w-80 lg:w-96"
-              color="primary"
-              onClick={() => setOnboardingStep(onboardingStep + 1)}
-            >
-              Continue
-            </Button>
-          </>
-        );
-      case 1:
-        return <>Nope</>;
-    }
-  };
+  }, [setTempFood, setImageIsProcessing]);
 
   return (
     <div className="flex flex-col items-center justify-center pt-5 gap-5">
@@ -86,17 +60,24 @@ function ReviewIngredientsComponent() {
 
       <Divider />
 
-      {/* <Tabs
-        variant="bordered"
-        size="md"
-        value={tabState}
-        onChange={setTabState}
-      >
-        <Tabs.Tab value={0}>Food Detected</Tabs.Tab>
-        <Tabs.Tab value={1}>Edit</Tabs.Tab>
-      </Tabs> */}
-
-      {getTabContent()}
+      {imageIsProcessing ? (
+        <p>Image is processing!</p>
+      ) : (
+        <>
+          <div className="flex flex-row items-center justify-center gap-5 flex-wrap">
+            {tempFood.map((food) => (
+              <IngredientsComponent name={food} />
+            ))}
+          </div>
+          <Button
+            className="w-80 lg:w-96"
+            color="primary"
+            onClick={() => setOnboardingStep(onboardingStep + 1)}
+          >
+            Continue
+          </Button>
+        </>
+      )}
     </div>
   );
 }
