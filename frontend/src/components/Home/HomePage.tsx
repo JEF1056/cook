@@ -10,16 +10,16 @@ const WelcomeBanner = ({ name }: { name: string }) => {
   return (
     <div className="flex w-full items-center justify-center py-8">
       <img className="absolute  z-0" src={welcomeBubble} 
-      style={{height:"25%", 
-      marginRight: "13 rem",
-      marginBottom:"7 rem"}}></img>
+      style={{height:"50%", 
+      marginRight: "50%", 
+      marginBottom:"35%"}}></img>
       <div className="chat chat-end z-10">
         <div className="chat-header font-bold text-3xl p-8"
-        style={{marginLeft:"-5 rem",}}
+        style={{marginLeft:"-5 rem"}}
         >
           Welcome back, chef
         </div>
-        <div className="chat-bubble text-3xl w-64 ">Let {name} cook!</div>
+        <div className="chat-bubble text-3xl w-64 p-6">Let {name} cook!</div>
         <div className="w-36 rounded-full">
           <img src={mascot} />
         </div>
