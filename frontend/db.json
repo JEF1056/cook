@@ -15,7 +15,7 @@
         }
     ],
 
-    "recipes": [
+    "favorite-recipes": [
         {   
             "id": 1,
             "title": "Veggie Medley 1",

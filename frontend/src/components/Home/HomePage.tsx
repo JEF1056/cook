@@ -7,9 +7,6 @@ import banner from '../../images/banner.svg'
 const username:string = 'Zack'
 const baseUrl:string = "../"
 
-//set to absolute
-
-
 const WelcomeBanner = ({ name } : {name: string} ) => {
   return (
     <div>
