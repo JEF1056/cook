@@ -1,0 +1,11 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "database": "\\\\wsl.localhost\\Ubuntu-20.04\\home\\jfan\\cook\\backend\\cook.db",
+            "name": "yes"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}
