@@ -5,6 +5,7 @@ import "./App.css";
 import { HomePage } from "./components/Home/HomePage";
 import OnboardingScanPage from "./components/onboarding/OnboardingPage";
 import BottomNavigationComponent from "./components/BottomNavigationComponent";
+import SearchPage from "./components/search/SearchPage";
 
 function App() {
   const addBottomNavigation = (element: React.ReactNode) => {
@@ -24,6 +25,10 @@ function App() {
     {
       path: "/onboard",
       element: addBottomNavigation(<OnboardingScanPage />),
+    },
+    {
+      path: "/search",
+      element: addBottomNavigation(<SearchPage />),
     },
   ]);
 
