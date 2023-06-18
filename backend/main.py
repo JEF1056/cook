@@ -30,7 +30,7 @@ def recipe(title):
 @app.route("/recipes")
 def recipes():
     recipes_table = db.get_table("recipes")
-    return list(recipes_table)[:10]
+    return list(recipes_table)[:5]
 
 
 @app.post("/recipes")

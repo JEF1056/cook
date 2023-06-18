@@ -76,7 +76,7 @@ export function HomePage() {
   const [recipes, setRecipes] = useState(new Array());
 
   useEffect(() => {
-    foodService.getAllFavRecipes().then((returnedRecipes: Array<Object>) => {
+    foodService.getRecentRecipes().then((returnedRecipes: Array<Object>) => {
       setRecipes(returnedRecipes);
     });
   }, []);
