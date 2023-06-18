@@ -14,3 +14,8 @@ export const onboardingImageState = atom<string | undefined>({
   default: undefined,
   effects_UNSTABLE: [persistAtom],
 });
+
+export const recipeDetailState = atom<Object | undefined>({
+  key: "recipeDetailState",
+  default: undefined,
+});
