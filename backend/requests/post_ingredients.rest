@@ -1,17 +1,15 @@
-POST http://127.0.0.1:5000/ingredients HTTP/1.1
+POST https://127.0.0.1:5000/ingredients HTTP/1.1
 content-type: application/json
 
 [
-  {
-    "amount": 1,
-    "ingredient": "cabbage"
-  },
-  {
-    "amount": 2,
-    "ingredient": "lemon"
-  },
-  {
-    "amount": 3,
-    "ingredient": "lime"
-  }
+  {"amount": 1, "ingredient": "beef"},
+  {"amount": 2, "ingredient": "chicken"},
+  {"amount": 3, "ingredient": "pork"},
+  {"amount": 1, "ingredient": "lamb"},
+  {"amount": 2, "ingredient": "fish"},
+  {"amount": 3, "ingredient": "broccoli"},
+  {"amount": 1, "ingredient": "carrot"},
+  {"amount": 2, "ingredient": "spinach"},
+  {"amount": 3, "ingredient": "tomato"},
+  {"amount": 1, "ingredient": "eggplant"}
 ]

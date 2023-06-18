@@ -6,6 +6,7 @@ import { HomePage } from "./components/Home/HomePage";
 import OnboardingScanPage from "./components/Onboarding/OnboardingPage";
 import BottomNavigationComponent from "./components/BottomNavigationComponent";
 import SearchPage from "./components/search/SearchPage";
+import RecipeDetails from "./components/RecipeDetails"
 
 function App() {
   const addBottomNavigation = (element: React.ReactNode) => {
