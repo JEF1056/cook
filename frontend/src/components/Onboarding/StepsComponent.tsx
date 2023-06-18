@@ -1,5 +1,4 @@
 import { Steps } from "react-daisyui";
-import React from "react";
 
 interface StepsComponentProps {
   currentStep: number;

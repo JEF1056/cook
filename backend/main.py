@@ -31,8 +31,13 @@ def recipe(title):
 
 @app.route("/recipes")
 def recipes():
+    increase = request.args.get("increase")
+    if increase is None:
+        increase = 0
+    else:
+        increase = int(increase)
     recipes_table = db.get_table("recipes")
-    return list(recipes_table)[:5]
+    return list(recipes_table)[20 + increase : 25 + increase]
 
 
 @app.post("/recipes")
@@ -41,6 +46,7 @@ def add_recipes():
     new_recipes = request.json
     recipes_table.insert_many(new_recipes)
     return new_recipes
+
 
 @app.post("/recipes/delete/<title>")
 def delete_recipe(title):
@@ -115,10 +121,11 @@ def add_fav_recipes():
 
 @app.post("/fav-recipes/delete/<title>")
 def delete_fav_recipe(title):
-    if (db.get_table("fav-recipes").delete(title=title)):
-        return f'{title} has been deleted.'
+    if db.get_table("fav-recipes").delete(title=title):
+        return f"{title} has been deleted."
     else:
-        return f'{title} has already been deleted/or did not exist.'
+        return f"{title} has already been deleted/or did not exist."
+
 
 @app.route("/get_image")
 def get_image():
@@ -166,6 +173,25 @@ def basic_search():
 
     return jsonify(top_10_recipes)
     return jsonify(top_10_recipes)
+
+
+@app.route("/get_description")
+def get_description():
+    prompt = request.args.get("prompt")
+    if prompt is None:
+        return "error: no prompt", 400
+    p1 = (
+        "Generate a witty, interesting, and insightful description of a recipe using this information: "
+        + prompt
+    )
+    response = openai.Completion.create(
+        model="text-davinci-001",
+        prompt=prompt,
+        max_tokens=100,
+        temperature=0.8,
+    )
+
+    return response["choices"][0]["text"]
 
 
 app.run(host="0.0.0.0", port=5000, ssl_context="adhoc", debug=True, threaded=False)
