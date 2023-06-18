@@ -19,7 +19,7 @@ function RecipesComponent(props: RecipesComponentProps) {
   const [desc, setDesc] = useState(props.description);
   const size = useWindowSize();
   const setRecipeDetail = useSetRecoilState(recipeDetailState)
-  
+
 
   const imagePrompt =
     "Delicous, appetizing, and beautiful " +

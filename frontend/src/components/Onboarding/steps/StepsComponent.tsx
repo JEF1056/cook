@@ -4,7 +4,7 @@ interface StepsComponentProps {
   currentStep: number;
 }
 
-export function StepsComponent(props: StepsComponentProps) {
+function StepsComponent(props: StepsComponentProps) {
   return (
     <Steps className="w-full">
       <Steps.Step color={props.currentStep >= 0 ? "primary" : undefined}>
@@ -19,3 +19,5 @@ export function StepsComponent(props: StepsComponentProps) {
     </Steps>
   );
 }
+
+export default StepsComponent;

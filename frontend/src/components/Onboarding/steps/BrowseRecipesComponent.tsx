@@ -1,4 +1,4 @@
-import { StepsComponent } from "./StepsComponent";
+import StepsComponent from "./StepsComponent";
 import { Button } from "react-daisyui";
 import { useRecoilState } from "recoil";
 import { onboardingStepState } from "../../../services/atoms";

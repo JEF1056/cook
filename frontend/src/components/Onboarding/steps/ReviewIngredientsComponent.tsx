@@ -1,4 +1,4 @@
-import { StepsComponent } from "./StepsComponent";
+import StepsComponent from "./StepsComponent";
 import { Button, Card, Divider, Progress, Tabs } from "react-daisyui";
 import { useRecoilState, useRecoilValue } from "recoil";
 import {

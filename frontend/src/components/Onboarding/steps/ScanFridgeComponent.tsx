@@ -1,4 +1,4 @@
-import { StepsComponent } from "./StepsComponent";
+import StepsComponent from "./StepsComponent";
 import { useRef, useState, useCallback } from "react";
 import { useWindowSize } from "../../../services/hooks";
 import Webcam from "react-webcam";

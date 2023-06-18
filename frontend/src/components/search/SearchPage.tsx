@@ -61,8 +61,8 @@ function SearchPage() {
           {recipes.map((recipe) => (
             <RecipesComponent
               title={recipe.title}
-              //   ingredients={recipe.ingredients}
-              //   directions={recipe.directions}
+                ingredients={recipe.ingredients}
+                directions={recipe.directions}
               rowMode
             />
           ))}

@@ -1,5 +1,8 @@
 import image from "../images/lizard.jpeg";
 import { Badge } from "react-daisyui";
+import { useRecoilValue } from 'recoil'
+import { recipeDetailState } from '../services/atoms'
+
 const title: string = "Salmon & Spinach Pinwheels";
 const description: string = "Yummy delicious fish in wheels.";
 const ingredients: string =
@@ -8,6 +11,7 @@ const ingredientArray: Array<string> = ingredients.split("\n");
 const directions: string =
   "Left\nRight\nLeft\nRight\nRight\nLeft\nRight\nRight\nLeft\nRight";
 const directionArray: Array<string> = directions.split("\n");
+
 
 const Ingredients = () => {
   return (
@@ -56,6 +60,10 @@ const Direction = (props: DirectionInterface) => {
 };
 
 const RecipeDetails = () => {
+
+    const recipeDetail = useRecoilValue(recipeDetailState)
+    console.log(recipeDetail)
+
   return (
     <div className="m-4">
       <h1 className="text-2xl font-medium">{title}</h1>
