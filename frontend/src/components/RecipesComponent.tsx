@@ -13,7 +13,7 @@ function RecipesComponent(props: RecipesComponentProps) {
   const [recipeImage, setRecipeImage] = useState<string | undefined>(undefined);
 
   const prompt =
-    "Delicous, appetizing " + props.title.toLowerCase() + " ready to be served";
+    "Delicous, appetizing, and beautiful " + props.title.toLowerCase() + " ready to be served";
 
   useEffect(() => {
     let timer1 = setTimeout(() => {
