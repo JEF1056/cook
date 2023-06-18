@@ -3,7 +3,6 @@ import { Button } from "react-daisyui";
 import { useRecoilState } from "recoil";
 import { onboardingStepState } from "../../../services/atoms";
 import { useState, useEffect } from "react";
-import IngredientsComponent from "../../IngredientsComponent";
 import RecipesComponent from "../../RecipesComponent";
 
 function BrowseRecipesComponent() {
@@ -16,7 +15,7 @@ function BrowseRecipesComponent() {
       fetch(
         `https://${
           window.location.hostname.split(":")[0]
-        }:5000/recipes?increase=10`
+        }:5000/recipes?increase=8`
       ).then((response) => {
         response.json().then((json) => {
           setRecipies(json);
