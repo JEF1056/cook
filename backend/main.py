@@ -4,8 +4,7 @@ import openai
 import dataset
 from flask_cors import CORS
 
-# openai.api_key = os.getenv("OPENAI_API_KEY")
-openai.api_key = "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"
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 app = Flask(__name__)
 CORS(app)
@@ -95,4 +94,4 @@ def get_image():
         return response["data"][0]["b64_json"]
 
 
-app.run(port=5000, debug=True, threaded=False)
+app.run(host="0.0.0.0", port=5000, ssl_context="adhoc", debug=True, threaded=False)
