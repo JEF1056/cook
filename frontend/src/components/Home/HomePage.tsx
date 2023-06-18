@@ -5,7 +5,7 @@ import lizardImg from '../../images/lizard.jpeg'
 import banner from '../../images/banner.svg'
 
 const username:string = 'Zack'
-const baseUrl:string = "http://localhost:3000"
+const baseUrl:string = "../"
 
 //set to absolute
 
@@ -29,26 +29,36 @@ const ToInputPage = ({ text } : {text:string}) => {
   return(
     <div className='flex p-8'>
       <button className='btn btn-warning flex-1 rounded-2xl' 
-              onClick={() => window.location.href=`${baseUrl}/yeet`}
+              onClick={() => window.location.href=`/onboard`}
               >{text}</button>
     </div>
   )
 }
 
-const Recipes = ( {recipes} : {recipes: Array<Object>} ) => {
-  return <ul>
-    {recipes.map(recipe => <Recipe recipe={recipe} />)}
-  </ul>
-    // return (
-    //   <ul>
-    //     {ingredients.map(ingredient => <Recipe></Recipe>)}
-    //   </ul>
-    // )
+interface RecipeInterface{
+  id?: Number
+  title: String
+  description?: String
+  source?: String
 }
 
-const Recipe = ({ recipe } : {recipe:Object}) => {
-  console.log(recipe.title)
-  return <li>{recipe.title}</li>
+const Recipes = ( {recipes} : {recipes: Array<RecipeInterface>} ) => {
+  return (
+  <div 
+    className="carousel carousel-center p-4 space-x-4 rounded-box mb-2 overflow-auto">
+    {recipes.map(recipe => <Recipe title={recipe.title} />)}
+  </div>)
+}
+
+const Recipe = (props: RecipeInterface) => {
+  return (
+  <div className="carousel-item">
+    <figure>
+      <img className='rounded-box' src={lizardImg}></img>
+      <figcaption>Lizard</figcaption>
+    </figure>
+  </div>
+  )
 }
 
 export function HomePage() {
@@ -67,29 +77,9 @@ export function HomePage() {
     <div>
       <WelcomeBanner name={username}/>
       <ToInputPage text={"Cook you next fridge-clean meal"}/>
-      <Recipes recipes={recipes}/>
 
       <h1 className='text-3xl font-heading pl-12 '>Your Recent Recipes</h1>
-      <div className="carousel carousel-center p-4 space-x-4 rounded-box mb-2 overflow-auto">
-        <div className="carousel-item">
-          <figure>
-            <img className='rounded-box' src={lizardImg}></img>
-            <figcaption>Lizard</figcaption>
-          </figure>
-        </div>
-        <div className="carousel-item">
-          <figure>
-            <img className='rounded-box ' src={lizardImg}></img>
-            <figcaption>Lizard</figcaption>
-          </figure>
-        </div>
-        <div className="carousel-item">
-          <figure>
-            <img className='rounded-box max-w-md' src={lizardImg}></img>
-            <figcaption>Lizard</figcaption>
-          </figure>
-        </div>
-      </div>
+      <Recipes recipes={recipes}/>
     </div>
   );
 }
