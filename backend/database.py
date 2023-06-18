@@ -3,7 +3,7 @@ import dataset
 db = dataset.connect('sqlite:///cook.db')
 db['ingredients']
 db['recipes']
-
+db['fav-recipes']
 
 # dic = {
 #     "amount": "2",
