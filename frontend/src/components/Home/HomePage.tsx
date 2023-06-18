@@ -55,7 +55,7 @@ const Recipe = (props: RecipeInterface) => {
     <div className="carousel-item">
       <figure>
         <img className="rounded-box" src={lizardImg}></img>
-        <figcaption>Lizard</figcaption>
+        <figcaption>{props.title}</figcaption>
       </figure>
     </div>
   );
@@ -68,7 +68,6 @@ export function HomePage() {
     foodService
     .getAllRecipes()
     .then( (returnedRecipes:Array<Object>) => {
-      console.log('yay!')
       console.log(returnedRecipes);
       setRecipes(returnedRecipes);
     });
