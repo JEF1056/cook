@@ -51,10 +51,33 @@ const Recipes = ({ recipes }: { recipes: Array<RecipeInterface> }) => {
 };
 
 const Recipe = (props: RecipeInterface) => {
+  const [recipeImage, setRecipeImage] = useState<string | undefined>(
+    undefined
+  );
+
+
+  useEffect(() => {
+    fetch("http://localhost:5000/get_image?prompt=" + prompt)
+      .then((response) => {
+        response.text().then((text) => {
+          console.log(text);
+          setRecipeImage(text);
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [props.title]);
+
+  console.log(recipeImage)
   return (
-    <div className="carousel-item">
+    <div className="carousel-item w-full lg:w-96 mx-5 lg:mx-0 h-96 relative">
       <figure>
-        <img className="rounded-box" src={lizardImg}></img>
+        <img className="rounded-box" src={
+            recipeImage !== undefined
+            ? "data:image/png;base64," + recipeImage
+            : "/placeholder.png"
+        }></img>
         <figcaption>{props.title}</figcaption>
       </figure>
     </div>
