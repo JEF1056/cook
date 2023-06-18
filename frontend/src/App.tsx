@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 import "./App.css";
