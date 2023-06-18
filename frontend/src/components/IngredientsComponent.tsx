@@ -13,32 +13,44 @@ function IngredientsComponent(props: IngredientsComponentProps) {
     undefined
   );
 
-  const prompt = "Super tasty " + props.name.toLowerCase() + " in the freezer";
+  const prompt =
+    "Tasty-looking and appetizing " +
+    props.name.toLowerCase() +
+    "that has been placed in the freezer";
 
   useEffect(() => {
-    fetch("http://localhost:5000/get_image?prompt=" + prompt)
-      .then((response) => {
-        response.text().then((text) => {
-          console.log(text);
-          setIngredientImage(text);
+    let timer1 = setTimeout(() => {
+      fetch("http://localhost:5000/get_image?prompt=" + prompt)
+        .then((response) => {
+          response.text().then((text) => {
+            console.log(text);
+            setIngredientImage(text);
+          });
+        })
+        .catch((error) => {
+          console.log(error);
         });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    }, 500);
+    return () => {
+      clearTimeout(timer1);
+    };
   }, [props.name]);
 
   return (
     <Card className="w-full lg:w-96 mx-5 lg:mx-0 h-96 relative">
-      <Card.Image
-        src={
-          ingredientImage !== undefined
-            ? "data:image/png;base64," + ingredientImage
-            : "/placeholder.png"
-        }
-        alt={prompt}
-        className="z-0"
-      />
+      {ingredientImage !== undefined ? (
+        <Card.Image
+          src={"data:image/png;base64," + ingredientImage}
+          alt={prompt}
+          className="z-0"
+        />
+      ) : (
+        <Card.Image
+          src="/placeholder.png"
+          alt={prompt}
+          className="animate-pulse z-0"
+        />
+      )}
       <div className="absolute top-2 right-2 z-10">
         <Button>
           <FontAwesomeIcon icon={faTrash} />
