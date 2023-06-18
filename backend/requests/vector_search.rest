@@ -1,0 +1,1 @@
+GET https://127.0.0.1:5000/vector_search?query=I%20want%20some%20easy%20to%20cook%20recipes,%20with%20beef%20in%20it.
