@@ -12,19 +12,22 @@ interface RecipesComponentProps {
 
 function RecipesComponent(props: RecipesComponentProps) {
   const [recipeImage, setRecipeImage] = useState<string | undefined>(undefined);
+  const [desc, setDesc] = useState(props.description);
   const size = useWindowSize();
 
-  const prompt =
+  const imagePrompt =
     "Delicous, appetizing, and beautiful " +
     props.title.toLowerCase() +
     " ready to be served";
+
+  const textPrompt = "name: " + props.title.toLowerCase();
 
   useEffect(() => {
     let timer1 = setTimeout(() => {
       fetch(
         `https://${
           window.location.hostname.split(":")[0]
-        }:5000/get_image?prompt=` + prompt
+        }:5000/get_image?prompt=` + imagePrompt
       )
         .then((response) => {
           response.text().then((text) => {
@@ -38,6 +41,29 @@ function RecipesComponent(props: RecipesComponentProps) {
     return () => {
       clearTimeout(timer1);
     };
+  }, [props.title]);
+
+  useEffect(() => {
+    if (props.description === undefined && props.rowMode === true) {
+      let timer1 = setTimeout(() => {
+        fetch(
+          `https://${
+            window.location.hostname.split(":")[0]
+          }:5000/get_description?prompt=` + textPrompt
+        )
+          .then((response) => {
+            response.text().then((text) => {
+              setDesc(text);
+            });
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }, 500);
+      return () => {
+        clearTimeout(timer1);
+      };
+    }
   }, [props.title]);
 
   return (
@@ -55,7 +81,7 @@ function RecipesComponent(props: RecipesComponentProps) {
         {recipeImage !== undefined ? (
           <Card.Image
             src={"data:image/png;base64," + recipeImage}
-            alt={prompt}
+            alt={imagePrompt}
             className={
               size.width > 512
                 ? props.rowMode === true
@@ -67,13 +93,13 @@ function RecipesComponent(props: RecipesComponentProps) {
         ) : (
           <Card.Image
             src="/placeholder.png"
-            alt={prompt}
+            alt={imagePrompt}
             className="animate-pulse z-0"
           />
         )}
         <Card.Body className="bg-base-200">
           <Card.Title className="text-md ">{props.title}</Card.Title>
-          {props.description !== undefined && <p>{props.description}</p>}
+          <p>{desc}</p>
         </Card.Body>
       </Card>
     </div>

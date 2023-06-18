@@ -151,4 +151,23 @@ def get_image():
         return response["data"][0]["b64_json"]
 
 
+@app.route("/get_description")
+def get_description():
+    prompt = request.args.get("prompt")
+    if prompt is None:
+        return "error: no prompt", 400
+    p1 = (
+        "Generate a witty, interesting, and insightful description of a recipe using this information: "
+        + prompt
+    )
+    response = openai.Completion.create(
+        model="text-davinci-001",
+        prompt=prompt,
+        max_tokens=100,
+        temperature=0.8,
+    )
+
+    return response["choices"][0]["text"]
+
+
 app.run(host="0.0.0.0", port=5000, ssl_context="adhoc", debug=True, threaded=False)
