@@ -30,7 +30,7 @@ function ScanFridgeComponent() {
 
   return (
     <div className="flex items-center justify-center">
-      <div className="absolute top-5 bg-neutral bg-opacity-80 rounded-lg w-96 lg:w-128 p-2">
+      <div className="absolute top-5 bg-neutral bg-opacity-70 rounded-lg w-96 lg:w-128 p-2">
         <StepsComponent currentStep={onboardingStep} />
       </div>
 
