@@ -14,16 +14,19 @@ function IngredientsComponent(props: IngredientsComponentProps) {
   );
 
   const prompt =
-    "Tasty-looking and appetizing " +
+    "Tasty-looking and appetizing uncooked " +
     props.name.toLowerCase() +
-    "that has been placed in the freezer";
+    " inside of a refridgerator";
 
   useEffect(() => {
     let timer1 = setTimeout(() => {
-      fetch("http://localhost:5000/get_image?prompt=" + prompt)
+      fetch(
+        `https://${
+          window.location.hostname.split(":")[0]
+        }:5000/get_image?prompt=` + prompt
+      )
         .then((response) => {
           response.text().then((text) => {
-            console.log(text);
             setIngredientImage(text);
           });
         })

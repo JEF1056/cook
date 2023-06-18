@@ -7,28 +7,13 @@ const username: string = "Zack";
 
 const WelcomeBanner = ({ name }: { name: string }) => {
   return (
-    <div>
-      {/* <img className='absolute z-0'
-        style={{
-          marginTop:"-1.1rem",
-          overflow: "hidden",
-        }}
-        src={banner}></img> */}
-
-      <h1 className="text-3xl pt-12 font-bold">Welcome back, {name}</h1>
-    </div>
-  );
-};
-
-const ToInputPage = ({ text }: { text: string }) => {
-  return (
-    <div className="flex p-8">
-      <button
-        className="btn btn-warning flex-1 rounded-2xl"
-        onClick={() => (window.location.href = `/onboard`)}
-      >
-        {text}
-      </button>
+    <div className="flex w-full items-center justify-center py-8">
+      <div className="chat chat-end">
+        <div className="chat-bubble text-3xl w-64">Let {name} cook!</div>
+        <div className="w-16 rounded-full">
+          <img src="icon.png" />
+        </div>
+      </div>
     </div>
   );
 };
@@ -88,20 +73,27 @@ export function HomePage() {
   const [recipes, setRecipes] = useState(new Array());
 
   useEffect(() => {
-    foodService
-    .getAllRecipes()
-    .then( (returnedRecipes:Array<Object>) => {
-      console.log(returnedRecipes);
+    foodService.getAllRecipes().then((returnedRecipes: Array<Object>) => {
       setRecipes(returnedRecipes);
     });
   }, []);
 
   return (
-    <div>
+    <div className="flex flex-col p-5">
       <WelcomeBanner name={username} />
-      <ToInputPage text={"Cook you next fridge-clean meal"} />
 
-      <h1 className="text-3xl font-heading pl-12 ">Your Recent Recipes</h1>
+      <div className="flex py-8">
+        <button
+          className="btn btn-warning flex-1 rounded-2xl"
+          onClick={() => (window.location.href = `/onboard`)}
+        >
+          Cook your next fridge-clean meal
+        </button>
+      </div>
+
+      <h1 className="text-3xl font-heading items-center">
+        Your Recent Recipes
+      </h1>
       <Recipes recipes={recipes} />
     </div>
   );

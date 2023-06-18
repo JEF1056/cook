@@ -1,5 +1,5 @@
-import axios from 'axios'
-const baseUrl = 'http://127.0.0.1:5000'
+import axios from "axios";
+const baseUrl = `https://${window.location.hostname.split(":")[0]}:5000`;
 
 const getAllIngredients = () => {
   const request = axios.get(`${baseUrl}/ingredients`);

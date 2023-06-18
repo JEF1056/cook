@@ -118,4 +118,4 @@ def get_image():
         return response["data"][0]["b64_json"]
 
 
-app.run(port=5000, debug=True, threaded=False)
+app.run(host="0.0.0.0", port=5000, ssl_context="adhoc", debug=True, threaded=False)
