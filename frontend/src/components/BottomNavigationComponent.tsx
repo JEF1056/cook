@@ -22,7 +22,7 @@ const paths = [
   },
   {
     path: "/profile",
-    avatar: "/zackbrcookin .jpg",
+    avatar: "/zackbrcookin.jpg",
   },
 ];
 
