@@ -3,6 +3,7 @@ import os
 import openai
 import dataset
 from flask_cors import CORS
+import random
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
@@ -10,6 +11,7 @@ app = Flask(__name__)
 CORS(app)
 
 db = dataset.connect("sqlite:///cook.db")
+
 
 @app.route("/")
 def hello():
@@ -28,7 +30,7 @@ def recipe(title):
 @app.route("/recipes")
 def recipes():
     recipes_table = db.get_table("recipes")
-    return list(recipes_table)
+    return list(recipes_table)[:10]
 
 
 @app.post("/recipes")
@@ -47,10 +49,11 @@ def insert_recipe(table):
 
 @app.post("/recipes/delete/<title>")
 def delete_recipe(title):
-    if (db.get_table("recipes").delete(title=title)):
-        return f'{title} has been deleted.'
+    if db.get_table("recipes").delete(title=title):
+        return f"{title} has been deleted."
     else:
-        return f'{title} has already been deleted/or did not exist.'
+        return f"{title} has already been deleted/or did not exist."
+
 
 # table.insert(dict(title="vegetable medley",
 #                   ingredients=("\n").join(
@@ -80,16 +83,16 @@ def ingredient(ingredient):
 def add_ingredients():
     ingredients_table = db.get_table("ingredients")
     new_ingredients = request.json
-    ingredients_table.upsert_many(new_ingredients, ['ingredient'])
+    ingredients_table.upsert_many(new_ingredients, ["ingredient"])
     return new_ingredients
 
 
 @app.post("/ingredients/delete/<ingredient>")
 def delete_ingredient(ingredient):
-    if (db.get_table("ingredients").delete(ingredient=ingredient)):
-        return f'{ingredient} has been deleted.'
+    if db.get_table("ingredients").delete(ingredient=ingredient):
+        return f"{ingredient} has been deleted."
     else:
-        return f'{ingredient} has already been deleted/or did not exist.'
+        return f"{ingredient} has already been deleted/or did not exist."
 
 
 @app.route("/get_image")
