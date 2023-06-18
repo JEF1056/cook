@@ -1,7 +1,9 @@
 import dataset
 
 db = dataset.connect('sqlite:///cook.db')
-table = db['ingredients']
+db['ingredients']
+db['recipes']
+
 
 # dic = {
 #     "amount": "2",

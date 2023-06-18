@@ -5,12 +5,12 @@ import dataset
 from flask_cors import CORS
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
+print(openai.api_key)
 
 app = Flask(__name__)
 CORS(app)
 
 db = dataset.connect("sqlite:///cook.db")
-
 
 @app.route("/")
 def hello():
