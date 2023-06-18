@@ -2,8 +2,23 @@ import { Button, Input, InputGroup } from "react-daisyui";
 import RecipesComponent from "../RecipesComponent";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { useEffect, useState } from "react";
 
 function SearchPage() {
+  const [recipes, setRecipies] = useState<any[]>([]);
+
+  useEffect(() => {
+    fetch(`https://${window.location.hostname.split(":")[0]}:5000/recipes`)
+      .then((response) => {
+        response.text().then((text) => {
+          console.log(text);
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   return (
     <>
       <InputGroup className="px-5 pt-5">

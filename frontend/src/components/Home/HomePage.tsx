@@ -1,22 +1,21 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import foodService from "../../services/food";
-import lizardImg from "../../images/lizard.jpeg";
 import RecipesComponent from "../RecipesComponent";
-import mascot from "../../images/mascot.png"
-import welcomeBubble from "frontend/src/images/Welcome Circle.jpg"
+import mascot from "../../images/mascot.png";
+import welcomeBubble from "frontend/src/images/Welcome Circle.jpg";
 
 const username: string = "Zack";
-
 
 const WelcomeBanner = ({ name }: { name: string }) => {
   return (
     <div className="flex w-full items-center justify-center py-8">
       <div className="chat chat-end">
-        <div className="chat-header font-bold text-3xl p-8">Welcome back, chef</div>
+        <div className="chat-header font-bold text-3xl p-8">
+          Welcome back, chef
+        </div>
         <div className="chat-bubble text-3xl w-64 ">Let {name} cook!</div>
         <div className="w-36 rounded-full">
-          <img src={mascot}/>
+          <img src={mascot} />
         </div>
       </div>
     </div>
@@ -44,7 +43,6 @@ const Recipes = ({ recipes }: { recipes: Array<RecipeInterface> }) => {
 //   const [recipeImage, setRecipeImage] = useState<string | undefined>(
 //     undefined
 //   );
-
 
 //   useEffect(() => {
 //     fetch("http://localhost:5000/get_image?prompt=" + prompt)
