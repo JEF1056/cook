@@ -4,12 +4,12 @@ import json
 
 db = dataset.connect("sqlite:///cook.db")
 db["ingredients"]
-db["recipes"].drop()
+db['recipes']
+db['fav-recipes']
 
 recipies = pandas.read_csv("recipes.csv")
 dict_df = json.loads(recipies.to_json(orient="records"))
 db["recipes"].insert_many(dict_df)
-
 
 # dic = {
 #     "amount": "2",

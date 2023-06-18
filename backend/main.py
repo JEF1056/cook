@@ -40,13 +40,6 @@ def add_recipes():
     recipes_table.insert_many(new_recipes)
     return new_recipes
 
-
-def insert_recipe(table):
-    """Inserts a recipe and then returns that inserted recipe"""
-    table.insert(request.form)
-    # when adding data, make everything lower case later
-
-
 @app.post("/recipes/delete/<title>")
 def delete_recipe(title):
     if db.get_table("recipes").delete(title=title):
@@ -94,6 +87,36 @@ def delete_ingredient(ingredient):
     else:
         return f"{ingredient} has already been deleted/or did not exist."
 
+
+@app.route("/fav-recipes/<title>")
+def fav_recipe(title):
+    res = list(db.get_table("fav-recipes").find(title=title))
+    if len(res) >= 1:  # there should only be 1 result
+        return res[0]
+    else:
+        return
+
+
+@app.route("/fav-recipes")
+def fav_recipes():
+    recipes_table = db.get_table("fav-recipes")
+    return list(recipes_table)
+
+
+@app.post("/fav-recipes")
+def add_fav_recipes():
+    recipes_table = db.get_table("fav-recipes")
+    new_recipes = request.json
+    recipes_table.insert_many(new_recipes)
+    return new_recipes
+
+
+@app.post("/fav-recipes/delete/<title>")
+def delete_fav_recipe(title):
+    if (db.get_table("fav-recipes").delete(title=title)):
+        return f'{title} has been deleted.'
+    else:
+        return f'{title} has already been deleted/or did not exist.'
 
 @app.route("/get_image")
 def get_image():
