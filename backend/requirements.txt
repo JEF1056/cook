@@ -33,3 +33,5 @@ requests
 openai
 flask-cors
 cryptography==41.0.1
+langchain
+pinecone-client
