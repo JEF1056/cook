@@ -5,7 +5,8 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 
 function SearchPage() {
-  const [recipes, setRecipies] = useState<any[]>([]);
+  const [recipes, setRecipies] = useState<any[] | undefined>(undefined);
+  const [inp, setInp] = useState("");
 
   useEffect(() => {
     fetch(`https://${window.location.hostname.split(":")[0]}:5000/recipes`)
@@ -22,38 +23,51 @@ function SearchPage() {
   return (
     <>
       <InputGroup className="px-5 pt-5">
-        <Input className="w-full" placeholder="Search for recipes" />
-        <Button>
+        <Input
+          className="w-full"
+          placeholder="Search for recipes"
+          value={inp}
+          onChange={(event) => setInp(event.currentTarget.value)}
+        />
+        <Button
+          onClick={() => {
+            setRecipies(undefined);
+            fetch(
+              `https://${
+                window.location.hostname.split(":")[0]
+              }:5000/vector_search?query=${inp}`
+            )
+              .then((response) => {
+                response.json().then((json) => {
+                  setRecipies(json);
+                });
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          }}
+        >
           <FontAwesomeIcon icon={faMagnifyingGlass} />
         </Button>
       </InputGroup>
-      <>
-        <RecipesComponent
-          title="Spring roll"
-          description="A buttery, crisp boi that is yumm"
-          rowMode
-        />
-        <RecipesComponent
-          title="Chocolate sundae"
-          description="Nothing like a sundae for sunday"
-          rowMode
-        />
-        <RecipesComponent
-          title="A stick of butter, deep fried in butter"
-          description="Mmm, clogged arteries"
-          rowMode
-        />
-        <RecipesComponent
-          title="Fried rice on a stick"
-          description="How- how do you eat this?"
-          rowMode
-        />
-        <RecipesComponent
-          title="Charred tsar cake"
-          description="better not be burnt"
-          rowMode
-        />
-      </>
+      {recipes === undefined ? (
+        <div className="flex flex-row justify-center items-center">
+          <div className="pt-10">
+            Nothing here. Search for some recipes above!
+          </div>
+        </div>
+      ) : (
+        <>
+          {recipes.map((recipe) => (
+            <RecipesComponent
+              title={recipe.title}
+              //   ingredients={recipe.ingredients}
+              //   directions={recipe.directions}
+              rowMode
+            />
+          ))}
+        </>
+      )}
     </>
   );
 }

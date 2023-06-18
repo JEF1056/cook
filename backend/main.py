@@ -179,17 +179,19 @@ def basic_search():
     return jsonify(top_10_recipes)
     # return jsonify(top_10_recipes)
 
-@app.route('/vector_search', methods=['GET'])
+
+@app.route("/vector_search", methods=["GET"])
 def vector_search():
-    os.environ["OPENAI_API_KEY"] = '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'
     user_input = request.args.get("query")
     # user_input = 'I want some easy to cook recipes, with beef in it.'
     if user_input is None:
         return "400", 400
-    pinecone.init(api_key="46ede06d-e66a-4fe1-afe6-edfe6338703e",environment = "us-west1-gcp-free")
+    pinecone.init(
+        api_key="46ede06d-e66a-4fe1-afe6-edfe6338703e", environment="us-west1-gcp-free"
+    )
     index_name = "recipes"
     embeddings = OpenAIEmbeddings()
-    docsearch = Pinecone.from_existing_index(index_name,embeddings)
+    docsearch = Pinecone.from_existing_index(index_name, embeddings)
     docs = docsearch.similarity_search(user_input)
     content = []
     for doc in docs:
@@ -198,7 +200,7 @@ def vector_search():
 
     for element in content:
         recipe = {}
-        lines = element.split('\n')
+        lines = element.split("\n")
         for line in lines:
             if line.startswith("title:"):
                 recipe["title"] = line.split(": ", 1)[1]
