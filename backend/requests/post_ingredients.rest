@@ -11,7 +11,7 @@ content-type: application/json
     "ingredient": "lemon"
   },
   {
-    "amount": 2,
+    "amount": 3,
     "ingredient": "lime"
   }
 ]

@@ -65,7 +65,8 @@ export function HomePage() {
     foodService
     .getAllRecipes()
     .then( (returnedRecipes:Array<Object>) => {
-      console.log('got recipes');
+      console.log('yay!')
+      console.log(returnedRecipes);
       setRecipes(returnedRecipes);
     })
   }, [])

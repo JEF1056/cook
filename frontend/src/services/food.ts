@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = 'http://localhost:3001'
+const baseUrl = 'http://127.0.0.1:5000'
 
 const getAllIngredients = () => {
     const request = axios.get(`${baseUrl}/ingredients`)
@@ -7,8 +7,8 @@ const getAllIngredients = () => {
 }
 
 const getAllRecipes = () => {
+    console.log('hi')
     const request = axios.get(`${baseUrl}/recipes`)
-
     return request.then(response => response.data)
 }
 
