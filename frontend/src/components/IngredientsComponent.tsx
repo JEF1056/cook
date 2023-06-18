@@ -27,7 +27,6 @@ function IngredientsComponent(props: IngredientsComponentProps) {
       )
         .then((response) => {
           response.text().then((text) => {
-            console.log(text);
             setIngredientImage(text);
           });
         })
