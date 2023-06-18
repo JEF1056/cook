@@ -1,4 +1,4 @@
-POST http://127.0.0.1:5000/recipes HTTP/1.1
+POST https://127.0.0.1:5000/recipes HTTP/1.1
 content-type: application/json
 
 [

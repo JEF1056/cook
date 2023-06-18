@@ -2,11 +2,14 @@ import dataset
 import pandas
 import json
 
+import os
+
+print(os.getcwd())
+
 db = dataset.connect("sqlite:///cook.db")
 #db["ingredients"]
 #db['fav-recipes']
-
-
+db["recipes"].drop()
 recipies = pandas.read_csv("recipes.csv")
 dict_df = json.loads(recipies.to_json(orient="records"))
 db["recipes"].insert_many(dict_df)

@@ -3,7 +3,9 @@ import os
 import openai
 import dataset
 from flask_cors import CORS
+import pandas as pd
 import random
+from flask import jsonify
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
@@ -142,6 +144,28 @@ def get_image():
         )
 
         return response["data"][0]["b64_json"]
+
+@app.route('/basic_search', methods=['GET'])
+def basic_search():
+    table = db['ingredients']
+    food_list = [row['ingredient'] for row in table.all()]
+    
+    sampled_data = pd.read_csv('recipes.csv')
+    sampled_data['food_match_count'] = sampled_data['ingredients'].apply(lambda x: sum(food in x for food in food_list))
+    sorted_data = sampled_data.sort_values('food_match_count', ascending=False)
+
+    top_10_recipes = []
+    for index, row in sorted_data.head(10).iterrows():
+        recipe = {
+            "title": row['title'],
+            "ingredients": row['ingredients'],
+            "directions": row['directions'],
+            "food_match_count": row['food_match_count']
+        }
+        top_10_recipes.append(recipe)
+
+    return jsonify(top_10_recipes)
+    return jsonify(top_10_recipes)
 
 
 app.run(host="0.0.0.0", port=5000, ssl_context="adhoc", debug=True, threaded=False)
